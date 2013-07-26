@@ -11,3 +11,4 @@ app.get('/', function(req, res){
 });
 
 app.listen(port);
+console.log('Started server at port ' + port);
