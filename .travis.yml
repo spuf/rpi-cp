@@ -9,7 +9,7 @@ env:
   global:
     - secure: "Y4ot8azTETJsGNiGZ5IWz803NeME1mm2I49vO4VjK0Xz2bEY2NJ1bC8NyGEnqw+6gEtPbEsZTYO/zuDakHJUaijPoJeheF/ao4vo12i6fMPJhs+qjTn6v9cvV7MGxOTB5V4c8R6qidqI8HcfiVakcMsS2WBMv9mgriEYG1kPiac="
     - secure: "v8WrqBjWi6kVlwHMrOjp8o0Zpx7dDTPWoYFAK7cnt8xY9taWTFc2kxn6066NcNfIzevJN+FfJZ5ep0hI500Pfz3f7nDf49qtsPURudAPgS9oqoT1yRdcsi0yV29MVpj8Qc1cnzOdQWXAmnfmmF6ElNIP/Nfr1gA4UqMLnZQgNug="
-	
+
 after_success:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - date > version.txt
