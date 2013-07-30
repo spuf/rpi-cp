@@ -1,12 +1,15 @@
 language: node_js
 node_js:
   - "0.10"
+
 notifications:
   email: false
+
 env:
   global:
-    - secure: "gM4cbxahgKPK+omt16Pbi75O+oRgUVezclLgMA+GOiujL6TwPORMapCggHekL99R2pA3kSZCxOhlv7QBfX7s06mwVruFo13vypT/MVOKGkPdw6/wi0eD+IqvXki/hSPRTGimr5L59YFl5pnXkqr3PgB3ahhvQrhoeMr+xYQScfM="
-    - secure: "O+2I/JrI6Qtb4h6rn4ZKdEuhTspYAwrCTYDLDdLpqLNAPElo8SHiJvcd5BxU58HyXC+tlvZWgzS/96lag1VLyv6xpfgwXrYK6M3rDbzqB4GiEsPzfxIAVRR8Qur0hh3Z6L1jOxUU/uuKHiocXkH1U/ZNWku0vR7/Bd6RJ5B7Wew="
+    - secure: "Y4ot8azTETJsGNiGZ5IWz803NeME1mm2I49vO4VjK0Xz2bEY2NJ1bC8NyGEnqw+6gEtPbEsZTYO/zuDakHJUaijPoJeheF/ao4vo12i6fMPJhs+qjTn6v9cvV7MGxOTB5V4c8R6qidqI8HcfiVakcMsS2WBMv9mgriEYG1kPiac="
+    - secure: "v8WrqBjWi6kVlwHMrOjp8o0Zpx7dDTPWoYFAK7cnt8xY9taWTFc2kxn6066NcNfIzevJN+FfJZ5ep0hI500Pfz3f7nDf49qtsPURudAPgS9oqoT1yRdcsi0yV29MVpj8Qc1cnzOdQWXAmnfmmF6ElNIP/Nfr1gA4UqMLnZQgNug="
+	
 after_success:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - date > version.txt
