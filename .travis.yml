@@ -7,9 +7,11 @@ notifications:
 env:
   global:
     - secure: "C7v4WOUsdcNCm18eH4HvF1MQwa3SxYCM4di1zOuSPuTCjgrhStHoyuENQExVnmfODMDq5rs1V9CDdGzD42rSwfzguaZIYgVMTl5xgjC2Te6Nzm5FVyktbMoj1vuYQ/nZ978chDd+pCvBJH/f6TVjQvKkaIe3kjQB6YHdwioqo+c="
+    - secure: "gM4cbxahgKPK+omt16Pbi75O+oRgUVezclLgMA+GOiujL6TwPORMapCggHekL99R2pA3kSZCxOhlv7QBfX7s06mwVruFo13vypT/MVOKGkPdw6/wi0eD+IqvXki/hSPRTGimr5L59YFl5pnXkqr3PgB3ahhvQrhoeMr+xYQScfM="
 after_success:
+  - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - date > version.txt
   - git add .
   - git commit -m "deploy"
   - git remote add deploy $DEPLOY_REPO
-  - git push deploy
+  - git push --force deploy master
