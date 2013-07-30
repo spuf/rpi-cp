@@ -3,14 +3,15 @@ node_js:
   - "0.10"
 notifications:
   email: false
-  webhooks: http://home.spuf.ru/travis-ci
 env:
   global:
     - secure: "C7v4WOUsdcNCm18eH4HvF1MQwa3SxYCM4di1zOuSPuTCjgrhStHoyuENQExVnmfODMDq5rs1V9CDdGzD42rSwfzguaZIYgVMTl5xgjC2Te6Nzm5FVyktbMoj1vuYQ/nZ978chDd+pCvBJH/f6TVjQvKkaIe3kjQB6YHdwioqo+c="
     - secure: "gM4cbxahgKPK+omt16Pbi75O+oRgUVezclLgMA+GOiujL6TwPORMapCggHekL99R2pA3kSZCxOhlv7QBfX7s06mwVruFo13vypT/MVOKGkPdw6/wi0eD+IqvXki/hSPRTGimr5L59YFl5pnXkqr3PgB3ahhvQrhoeMr+xYQScfM="
+# .git: "O+2I/JrI6Qtb4h6rn4ZKdEuhTspYAwrCTYDLDdLpqLNAPElo8SHiJvcd5BxU58HyXC+tlvZWgzS/96lag1VLyv6xpfgwXrYK6M3rDbzqB4GiEsPzfxIAVRR8Qur0hh3Z6L1jOxUU/uuKHiocXkH1U/ZNWku0vR7/Bd6RJ5B7Wew="
 after_success:
   - echo -e "Host $DEPLOY_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - date > version.txt
+  - git init
   - git add .
   - git commit -m "deploy"
   - git remote add deploy $DEPLOY_REPO
