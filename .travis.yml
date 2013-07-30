@@ -20,3 +20,4 @@ after_success:
   - git commit -m "deploy"
   - git remote add deploy $DEPLOY_REPO
   - git push --force deploy master
+  - ssh git@home.spuf.ru -vvv
