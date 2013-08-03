@@ -17,7 +17,6 @@ io.enable('browser client minification');
 io.enable('browser client etag');
 io.enable('browser client gzip');
 io.set('log level', 1);
-io.set('origins', 'home.spuf.ru localhost:8080');
 setInterval(function () {
 	if (io.sockets.clients().length > 0) {
 		getInfo(function (info) {
