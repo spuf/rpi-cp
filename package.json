@@ -1,13 +1,14 @@
 {
-  "name": "rpi-cp",
-  "description": "Raspberry Pi Control Panel",
-  "version": "0.0.1",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/spuf/rpi-cp.git"
-  },  
-  "dependencies": {
-    "express": "3.x"
-  }
+	"name": "rpi-cp",
+	"description": "Raspberry Pi Control Panel",
+	"version": "0.0.1",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/spuf/rpi-cp.git"
+	},
+	"dependencies": {
+		"express": "3.x",
+		"socket.io": "0.9.x"
+	}
 }
