@@ -3,20 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>Raspberry Pi</title>
+	<script src="/components/jquery/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 		var socket = io.connect('/');
-		socket.on('info', function (info) {
-			document.getElementById('online').innerText = info.online;
-			document.getElementById('date').innerText = info.date;
-			document.getElementById('temp').innerText = info.temp;
+		$(function () {
+			socket.on('info', function (info) {
+				$('#online').text(info.online);
+				$('#date').text(info.date);
+				$('#temp').text(info.temp);
+			});
 		});
 	</script>
 </head>
 <body>
 	<h1>Raspberry Pi</h1>
 	<p>Online: <strong id="online">0</strong></p>
-	<p>Server temp: <strong id="temp">...</strong><strong>&deg;C</strong></p>
+	<p>Server temp: <strong id="temp">...</strong></p>
 	<p>Server time: <strong id="date">...</strong></p>
 </body>
 </html>

@@ -8,7 +8,9 @@
 		"url": "http://github.com/spuf/rpi-cp.git"
 	},
 	"dependencies": {
-		"express": "3.x",
-		"socket.io": "0.9.x"
+		"express": "~3.3.4",
+		"socket.io": "~0.9.16",
+		"async": "~0.2.9",
+		"bower": "~1.1.0"
 	}
 }
