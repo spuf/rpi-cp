@@ -4,6 +4,8 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
+var fs = require('fs');
+
 var port = process.env.PORT || parseInt(process.argv[2]);
 
 app.use(express.compress());
@@ -36,7 +38,8 @@ io.sockets.on('connection', function (socket) {
 function getInfo(callback) {
 	var info = {
 		online: count,
-		date: (new Date()).toString()
+		date: (new Date()).toString(),
+		temp: parseInt(fs.readFileSync('/sys/class/thermal/thermal_zone0/temp')) / 1000
 	};
 	if (typeof(callback) == 'function') {
 		callback(info);
