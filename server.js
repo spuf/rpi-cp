@@ -17,19 +17,27 @@ io.enable('browser client minification');
 io.enable('browser client etag');
 io.enable('browser client gzip');
 io.set('log level', 1);
-setInterval(function () {
+
+async.forever(function (callback) {
 	if (io.sockets.clients().length > 0) {
 		getInfo(function (info) {
 			io.sockets.volatile.emit('info', info);
 		});
 	}
-}, 1000);
+	setTimeout(callback, 1000);
+});
+
+io.sockets.on('coonection' , function (socket) {
+	socket.on('connect', function () {
+		socket.emit('online', io.sockets.clients().length);
+	});
+	socket.on('disconnect', function () {
+		socket.broadcast.emit('online', io.sockets.clients().length);
+	});
+});
 
 function getInfo(callback) {
 	async.parallel({
-		online: function (callback) {
-			callback(null, io.sockets.clients().length);
-		},
 		date: function (callback) {
 			callback(null, (new Date()).toString());
 		},
