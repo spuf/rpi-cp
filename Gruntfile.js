@@ -3,13 +3,12 @@ module.exports = function(grunt) {
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
-		clean: [
-			'public'
-		],
-		concat: {
-			src: ['app/scripts/app.js'],
-			dest: 'public/scripts/main.js'
+		clean: {
+			app: [
+				'public'
+			]
 		},
+		concat: {},
 		useminPrepare: {
 			html: 'app/index.html',
 			options: {
@@ -19,16 +18,20 @@ module.exports = function(grunt) {
 		usemin: {
 			html: ['public/index.html'],
 			options: {
-				dirs: ['app']
+				dirs: ['public']
 			}
 		},
 		copy: {
-			main: {
+			app: {
 				files: [
 					{
 						expand: true,
 						cwd: 'app',
-						src: ['robots.txt', 'favicon.ico'],
+						src: [
+							'robots.txt',
+							'favicon.ico',
+							'index.html'
+						],
 						dest: 'public'
 					},
 					{
@@ -48,7 +51,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', [
 	    'clean',
 		'useminPrepare',
-	    //'concat',
+	    'concat',
 		'copy',
 		'usemin'
 	]);

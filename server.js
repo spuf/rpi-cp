@@ -27,12 +27,13 @@ async.forever(function (callback) {
 	setTimeout(callback, 1000);
 });
 
-io.sockets.on('coonection' , function (socket) {
-	socket.on('connect', function () {
-		socket.emit('online', io.sockets.clients().length);
-	});
+io.sockets.on('connection' , function (socket) {
+	io.sockets.emit('online', io.sockets.clients().length);
+
 	socket.on('disconnect', function () {
-		socket.broadcast.emit('online', io.sockets.clients().length);
+		setTimeout(function () {
+			io.sockets.emit('online', io.sockets.clients().length);
+		}, 0);
 	});
 });
 

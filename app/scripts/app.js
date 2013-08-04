@@ -11,4 +11,14 @@ $(function () {
 		$('#online').text(info);
 	});
 
+	socket.on('connect', function() {
+		$('#online').text('Connected');
+		$('#date').text('...');
+		$('#temp').text('...');
+	});
+
+	socket.on('disconnect', function() {
+		$('#online').text('Disconnected');
+	});
+
 });
