@@ -10,10 +10,12 @@ Dependencies
 - http://gruntjs.com/
 - http://bower.io/
 
-Build
------
+How To
+------
 
 ```shell
 npm install
 bower install
+grunt
+node server.js 8080
 ```
