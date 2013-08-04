@@ -1,17 +1,19 @@
-rpi-cp
-======
-
 Raspberry Pi Control Panel
+==========================
 
-Using
------
-http://nodejs.org/
-http://gruntjs.com/
-http://bower.io/
+Web-dashboard for Raspberry Pi.
+
+Dependencies
+------------
+
+- http://nodejs.org/
+- http://gruntjs.com/
+- http://bower.io/
 
 Build
 -----
-```
+
+```shell
 npm install
 bower install
 ```
