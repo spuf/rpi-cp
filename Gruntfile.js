@@ -33,15 +33,6 @@ module.exports = function(grunt) {
 							'index.html'
 						],
 						dest: 'public'
-					},
-					{
-						expand: true,
-						flatten: true,
-						cwd: 'bower_components',
-						src: [
-							'jquery/jquery.min.js'
-						],
-						dest: 'public/scripts'
 					}
 				]
 			}

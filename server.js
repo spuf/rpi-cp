@@ -13,9 +13,6 @@ app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 
-io.enable('browser client minification');
-io.enable('browser client etag');
-io.enable('browser client gzip');
 io.set('log level', 1);
 
 async.forever(function (callback) {
