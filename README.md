@@ -23,3 +23,9 @@ bower install
 grunt
 node server.js 8080
 ```
+
+Available API
+--------------
+
+_Not implemented yet._ 
+[API Docs](http://docs.rpicp.apiary.io/)
