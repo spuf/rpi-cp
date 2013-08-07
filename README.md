@@ -5,6 +5,7 @@ Web-dashboard for Raspberry Pi.
 
 [![Build Status](https://travis-ci.org/spuf/rpi-cp.png?branch=master)](https://travis-ci.org/spuf/rpi-cp)
 [![Dependency Status](https://david-dm.org/spuf/rpi-cp.png)](https://david-dm.org/spuf/rpi-cp)
+[![devDependency Status](https://david-dm.org/spuf/rpi-cp/dev-status.png)](https://david-dm.org/spuf/rpi-cp#info=devDependencies)
 
 Dependencies
 ------------
