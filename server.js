@@ -1,13 +1,20 @@
+var fs = require('fs');
 var http = require('http');
+var https = require('https');
+var options = {
+	key: fs.readFileSync('/home/pi/.ssl/ssl'),
+	cert: fs.readFileSync('/home/pi/.ssl/ssl.crt'),
+	ca: [fs.readFileSync('/home/pi/.ssl/ca.pem'), fs.readFileSync('/home/pi/.ssl/sub.class1.server.ca.pem')]
+};
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
+var secureServer = https.createServer(options, app);
 var io = require('socket.io').listen(server);
 var async = require('async');
-var fs = require('fs');
 var util = require('util');
 
-var port = process.env.PORT || parseInt(process.argv[2]);
+var port = process.env.PORT || parseInt(process.argv[2]) || 8080;
 
 app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
@@ -50,4 +57,5 @@ function getInfo(callback) {
 }
 
 server.listen(port);
+secureServer.listen(1194);
 console.log('Started server at port ' + port);
