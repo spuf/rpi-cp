@@ -57,5 +57,5 @@ function getInfo(callback) {
 }
 
 server.listen(port);
-secureServer.listen(1194);
+secureServer.listen(443);
 console.log('Started server at port ' + port);
