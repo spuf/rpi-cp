@@ -30,7 +30,8 @@ module.exports = function(grunt) {
 						src: [
 							'robots.txt',
 							'favicon.ico',
-							'index.html'
+							'index.html',
+                            'components/**/*'
 						],
 						dest: 'public'
 					}
