@@ -2,9 +2,17 @@ var socket = io.connect('/');
 
 $(function () {
 
+	socket.on('tasks', function (info) {
+        var task_template = _.template('<p><%= name %>: <strong id="<%= index %>"></strong></p>');
+        _.each(info, function (task, index) {
+            task.index = index;
+            $('#content').append(task_template(task));
+        });
+	});
 	socket.on('info', function (info) {
-		$('#date').text(info.date);
-		$('#temp').text(info.temp);
+        _.each(info, function (value, name) {
+            $('#'+name).text(value);
+        });
 	});
 
 	socket.on('online', function (info) {
@@ -13,8 +21,7 @@ $(function () {
 
 	socket.on('connect', function() {
 		$('#online').text('Connected');
-		$('#date').text('...');
-		$('#temp').text('...');
+        $('#content').empty();
 	});
 
 	socket.on('disconnect', function() {

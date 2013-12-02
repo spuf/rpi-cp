@@ -22,20 +22,25 @@ if (config.ssl_enabled) {
 }
 
 var async = require('async');
-var util = require('util');
 
 app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
 
+io.enable('browser client minification');
+io.enable('browser client etag');
+io.enable('browser client gzip');
 io.set('log level', 1);
 
 async.forever(function (callback) {
 	if (io.sockets.clients().length > 0) {
-        async.parallel({
-            date: config.data.date.command,
-            temp: config.data.temp.command
-        }, function (err, results) {
+        var tasks = {};
+        for (var index in config.data) {
+            if (config.data.hasOwnProperty(index)) {
+                tasks[index] = config.data[index].command;
+            }
+        }
+        async.parallel(tasks, function (err, results) {
             io.sockets.volatile.emit('info', results);
         });
 	}
@@ -43,12 +48,21 @@ async.forever(function (callback) {
 });
 
 io.sockets.on('connection' , function (socket) {
-	io.sockets.emit('online', io.sockets.clients().length);
+    var tasks = {};
+    for (var index in config.data) {
+        if (config.data.hasOwnProperty(index)) {
+            tasks[index] = {
+                name: config.data[index].name,
+                type: config.data[index].type
+            };
+        }
+    }
+    socket.emit('tasks', tasks);
+
+    io.sockets.emit('online', io.sockets.clients().length);
 
 	socket.on('disconnect', function () {
-		setTimeout(function () {
-			io.sockets.emit('online', io.sockets.clients().length);
-		}, 0);
+		socket.broadcast.emit('online', io.sockets.clients().length - 1);
 	});
 });
 
