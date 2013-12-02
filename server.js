@@ -9,8 +9,9 @@ var io = require('socket.io');
 
 if (config.ssl_enabled) {
     server = http.createServer(function (request, response) {
-        console.log(request);
-        response.end('ok!');
+        response.statusCode = 302;
+        response.setHeader('Location', 'https://'+request.headers.host+request.url);
+        response.end();
     });
     var https = require('https');
     var secureServer = https.createServer(config.ssl, app);
@@ -19,11 +20,6 @@ if (config.ssl_enabled) {
     server = http.createServer(app);
     io = io.listen(server);
 }
-server = http.createServer(function (request, response) {
-    response.statusCode = 302;
-    response.setHeader('Location', 'https://'+request.headers.host+request.url);
-    response.end();
-});
 
 var async = require('async');
 var util = require('util');
