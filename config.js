@@ -2,7 +2,7 @@ var fs = require('fs');
 var util = require('util');
 
 var config = {
-    port: 8080,
+    port: 80,
 
     ssl_enabled: true,
     ssl_port: 443,
