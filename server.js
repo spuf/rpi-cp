@@ -1,20 +1,32 @@
-var fs = require('fs');
-var http = require('http');
-var https = require('https');
-var options = {
-	key: fs.readFileSync('/home/pi/.ssl/ssl'),
-	cert: fs.readFileSync('/home/pi/.ssl/ssl.crt'),
-	ca: [fs.readFileSync('/home/pi/.ssl/ca.pem'), fs.readFileSync('/home/pi/.ssl/sub.class1.server.ca.pem')]
-};
+var config = require('./config');
+
 var express = require('express');
 var app = express();
-var server = http.createServer(app);
-var secureServer = https.createServer(options, app);
-var io = require('socket.io').listen(server);
+
+var http = require('http');
+var server;
+var io = require('socket.io');
+
+if (config.ssl_enabled) {
+    server = http.createServer(function (request, response) {
+        console.log(request);
+        response.end('ok!');
+    });
+    var https = require('https');
+    var secureServer = https.createServer(config.ssl, app);
+    io = io.listen(secureServer);
+} else {
+    server = http.createServer(app);
+    io = io.listen(server);
+}
+server = http.createServer(function (request, response) {
+    response.statusCode = 302;
+    response.setHeader('Location', 'https://'+request.headers.host+request.url);
+    response.end();
+});
+
 var async = require('async');
 var util = require('util');
-
-var port = process.env.PORT || parseInt(process.argv[2]) || 8080;
 
 app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
@@ -24,9 +36,12 @@ io.set('log level', 1);
 
 async.forever(function (callback) {
 	if (io.sockets.clients().length > 0) {
-		getInfo(function (info) {
-			io.sockets.volatile.emit('info', info);
-		});
+        async.parallel({
+            date: config.data.date.command,
+            temp: config.data.temp.command
+        }, function (err, results) {
+            io.sockets.volatile.emit('info', results);
+        });
 	}
 	setTimeout(callback, 1000);
 });
@@ -41,21 +56,9 @@ io.sockets.on('connection' , function (socket) {
 	});
 });
 
-function getInfo(callback) {
-	async.parallel({
-		date: function (callback) {
-			callback(null, (new Date()).toString());
-		},
-		temp: function (callback) {
-			fs.readFile('/sys/class/thermal/thermal_zone0/temp', function (err, data) {
-				callback(null, err ? 'Unknown' : util.format('%d°C', parseInt(data) / 1000));
-			});
-		}
-	}, function (err, results) {
-		callback(results);
-	});
+server.listen(config.port);
+console.log('Started server at port ' + config.port);
+if (config.ssl_enabled) {
+    secureServer.listen(config.ssl_port);
+    console.log('Started secure server at port ' + config.ssl_port);
 }
-
-server.listen(port);
-secureServer.listen(443);
-console.log('Started server at port ' + port);
