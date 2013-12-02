@@ -4,7 +4,8 @@ var https = require('https');
 var options = {
 	key: fs.readFileSync('/home/pi/.ssl/ssl'),
 	cert: fs.readFileSync('/home/pi/.ssl/ssl.crt'),
-	ca: [fs.readFileSync('/home/pi/.ssl/ca.pem'), fs.readFileSync('/home/pi/.ssl/sub.class1.server.ca.pem')]
+	ca: [fs.readFileSync('/home/pi/.ssl/ca.pem'), fs.readFileSync('/home/pi/.ssl/sub.class1.server.ca.pem')],
+	ciphers: 'AES256-GCM-SHA384:AES128-GCM-SHA256:RC4:HIGH:!MD5:!aNULL:!EDH'
 };
 var express = require('express');
 var app = express();
