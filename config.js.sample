@@ -34,7 +34,7 @@ var config = {
         },
         date: {
             name: 'Server date',
-            type: 'text',
+            type: 'ping',
             command: function (callback) {
                 callback(null, (new Date()).toString());
             }
