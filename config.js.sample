@@ -13,7 +13,7 @@ var config = {
         	name: 'Used memory',
         	type: 'graph',
         	command: function (callback) {
-                callback(null, util.format('%d%', (1 - os.freemem() / os.totalmem()) * 100);
+        		callback(null, util.format('%d%', (1 - os.freemem() / os.totalmem()) * 100));
         	}
         },
         load: {
