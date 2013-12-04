@@ -1,4 +1,5 @@
 var fs = require('fs');
+var os = require('os');
 var util = require('util');
 
 var config = {
@@ -8,6 +9,20 @@ var config = {
     ssl_port: 443,
 
     data: {
+        mem: {
+        	name: 'Used memory',
+        	type: 'graph',
+        	command: function (callback) {
+        		callback(null, util.format('%d%', Math.round((1 - os.freemem() / os.totalmem()) * 100000) / 1000));
+        	}
+        },
+        load: {
+        	name: 'Load average',
+        	type: 'graph',
+        	command: function (callback) {
+        		callback(null, util.format('%d', os.loadavg()[0]));
+        	}
+        },
         temp: {
             name: 'Temperature',
             type: 'graph',
@@ -18,7 +33,7 @@ var config = {
             }
         },
         date: {
-            name: 'Date',
+            name: 'Server date',
             type: 'text',
             command: function (callback) {
                 callback(null, (new Date()).toString());
