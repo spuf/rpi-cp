@@ -4,9 +4,10 @@ $(function () {
 
     var tasks = {};
 
+    var task_template = _.template($('#template-task').html());
+
     socket.on('tasks', function (info) {
         tasks = info;
-        var task_template = _.template('<p><%= name %>: <strong id="<%= index %>"></strong></p>');
         _.each(info, function (task, index) {
             task.index = index;
             $('#content').append(task_template(task));

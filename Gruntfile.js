@@ -21,7 +21,25 @@ module.exports = function(grunt) {
 				dirs: ['public']
 			}
 		},
-		copy: {
+        uglify: {
+            dist: {
+                files: {
+                    'public/scripts/scripts.js': [
+                        'public/scripts/scripts.js'
+                    ]
+                }
+            }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        'public/scripts/{,*/}*.js'
+                    ]
+                }
+            }
+        },
+        copy: {
 			app: {
 				files: [
 					{
@@ -45,7 +63,9 @@ module.exports = function(grunt) {
 		'useminPrepare',
 	    'concat',
 		'copy',
-		'usemin'
+        'uglify',
+        'rev',
+        'usemin'
 	]);
 
 	grunt.registerTask('default', ['build']);
