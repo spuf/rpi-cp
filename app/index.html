@@ -7,7 +7,7 @@
 	<script src="/components/jquery/jquery.min.js"></script>
 	<script src="/components/underscore/underscore-min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<!-- build:js /scripts/main.js -->
+	<!-- build:js /scripts/scripts.js -->
 	<script src="/scripts/app.js"></script>
 	<!-- endbuild -->
 </head>
@@ -15,5 +15,9 @@
 	<h1>Raspberry Pi</h1>
 	<p>Online: <strong id="online">?</strong></p>
 	<div id="content"></div>
+
+    <script type="text/template" id="template-task">
+        <p><%= name %>: <strong id="<%= index %>"></strong></p>
+    </script>
 </body>
 </html>

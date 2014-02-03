@@ -1,23 +1,25 @@
 {
-	"name": "rpi-cp",
-	"description": "Raspberry Pi Control Panel",
-	"version": "0.0.1",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/spuf/rpi-cp.git"
-	},
-	"dependencies": {
-		"express": "~3.3.4",
-		"socket.io": "~0.9.16",
-		"async": "~0.2.9"
-	},
-	"devDependencies": {
-		"grunt": "~0.4.1",
-		"matchdep": "~0.1.2",
-		"grunt-contrib-clean": "~0.5.0",
-		"grunt-contrib-concat": "~0.3.0",
-		"grunt-contrib-copy": "~0.4.1",
-		"grunt-usemin": "~0.1.12"
-	}
+  "name": "rpi-cp",
+  "description": "Raspberry Pi Control Panel",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/spuf/rpi-cp.git"
+  },
+  "dependencies": {
+    "express": "~3.3.4",
+    "socket.io": "~0.9.16",
+    "async": "~0.2.9"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "matchdep": "~0.1.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-usemin": "~0.1.12",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-rev": "~0.1.0"
+  }
 }
