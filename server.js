@@ -10,7 +10,7 @@ var io = require('socket.io');
 if (config.ssl_enabled) {
     server = http.createServer(function (request, response) {
         response.statusCode = 302;
-        response.setHeader('Location', 'https://'+request.headers.host+request.url);
+        response.setHeader('Location', 'https://' + request.headers.host + request.url);
         response.end();
     });
     var https = require('https');
@@ -33,7 +33,7 @@ io.enable('browser client gzip');
 io.set('log level', 1);
 
 async.forever(function (callback) {
-	if (io.sockets.clients().length > 0) {
+    if (io.sockets.clients().length > 0) {
         var tasks = {};
         for (var index in config.data) {
             if (config.data.hasOwnProperty(index)) {
@@ -43,11 +43,11 @@ async.forever(function (callback) {
         async.parallel(tasks, function (err, results) {
             io.sockets.volatile.emit('info', results);
         });
-	}
-	setTimeout(callback, 1000);
+    }
+    setTimeout(callback, 1000);
 });
 
-io.sockets.on('connection' , function (socket) {
+io.sockets.on('connection', function (socket) {
     var tasks = {};
     for (var index in config.data) {
         if (config.data.hasOwnProperty(index)) {
@@ -61,9 +61,9 @@ io.sockets.on('connection' , function (socket) {
 
     io.sockets.emit('online', io.sockets.clients().length);
 
-	socket.on('disconnect', function () {
-		socket.broadcast.emit('online', io.sockets.clients().length - 1);
-	});
+    socket.on('disconnect', function () {
+        socket.broadcast.emit('online', io.sockets.clients().length - 1);
+    });
 });
 
 server.listen(config.port);
