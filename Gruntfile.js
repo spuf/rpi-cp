@@ -1,35 +1,27 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-	grunt.initConfig({
-		clean: {
-			app: [
-				'public'
-			]
-		},
-		concat: {},
-		useminPrepare: {
-			html: 'app/index.html',
-			options: {
-				dest: 'public'
-			}
-		},
-		usemin: {
-			html: ['public/index.html'],
-			options: {
-				dirs: ['public']
-			}
-		},
-        uglify: {
-            dist: {
-                files: {
-                    'public/scripts/scripts.js': [
-                        'public/scripts/scripts.js'
-                    ]
-                }
+    grunt.initConfig({
+        clean: {
+            app: [
+                'public'
+            ]
+        },
+        concat: {},
+        useminPrepare: {
+            html: 'app/index.html',
+            options: {
+                dest: 'public'
             }
         },
+        usemin: {
+            html: ['public/index.html'],
+            options: {
+                dirs: ['public']
+            }
+        },
+        uglify: {},
         rev: {
             dist: {
                 files: {
@@ -40,34 +32,34 @@ module.exports = function(grunt) {
             }
         },
         copy: {
-			app: {
-				files: [
-					{
-						expand: true,
-						cwd: 'app',
-						src: [
-							'robots.txt',
-							'favicon.ico',
-							'index.html',
+            app: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'app',
+                        src: [
+                            'robots.txt',
+                            'favicon.ico',
+                            'index.html',
                             'components/**/*'
-						],
-						dest: 'public'
-					}
-				]
-			}
-		}
-	});
+                        ],
+                        dest: 'public'
+                    }
+                ]
+            }
+        }
+    });
 
-	grunt.registerTask('build', [
-	    'clean',
-		'useminPrepare',
-	    'concat',
-		'copy',
+    grunt.registerTask('build', [
+        'clean',
+        'useminPrepare',
+        'concat',
+        'copy',
         'uglify',
         'rev',
         'usemin'
-	]);
+    ]);
 
-	grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['build']);
 
 };

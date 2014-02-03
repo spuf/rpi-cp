@@ -1,9 +1,9 @@
 {
-	"name": "rpi-cp",
-	"version": "0.0.1",
-	"dependencies": {
-		"jquery": "~2.0.3",
-		"underscore": "~1.5.2",
+    "name": "rpi-cp",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "~2.0.3",
+        "underscore": "~1.5.2",
         "socket.io-client": "~0.9.16"
-	}
+    }
 }

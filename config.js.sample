@@ -10,18 +10,18 @@ var config = {
 
     data: {
         mem: {
-        	name: 'Used memory',
-        	type: 'graph',
-        	command: function (callback) {
-        		callback(null, util.format('%d%', (1 - os.freemem() / os.totalmem()) * 100));
-        	}
+            name: 'Used memory',
+            type: 'graph',
+            command: function (callback) {
+                callback(null, util.format('%d%', (1 - os.freemem() / os.totalmem()) * 100));
+            }
         },
         load: {
-        	name: 'Load average',
-        	type: 'graph',
-        	command: function (callback) {
-        		callback(null, util.format('%d', os.loadavg()[0]));
-        	}
+            name: 'Load average',
+            type: 'graph',
+            command: function (callback) {
+                callback(null, util.format('%d', os.loadavg()[0]));
+            }
         },
         temp: {
             name: 'Temperature',
