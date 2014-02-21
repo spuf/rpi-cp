@@ -25,9 +25,14 @@ module.exports = function (grunt) {
             components: {
                 files: [{
                     expand: true,
-                    cwd: 'public/components',
-                    src: '**/*.js',
-                    dest: 'public/components'
+                    cwd: 'app',
+                    src: [
+                        'components/jquery/jquery.js',
+                        'components/underscore/underscore.js',
+                        'components/backbone/backbone.js',
+                        'components/marionette/lib/backbone.marionette.js'
+                    ],
+                    dest: 'public'
                 }]
             }
         },
@@ -49,8 +54,7 @@ module.exports = function (grunt) {
                         src: [
                             'robots.txt',
                             'favicon.ico',
-                            'index.html',
-                            'components/**/*'
+                            'index.html'
                         ],
                         dest: 'public'
                     }
