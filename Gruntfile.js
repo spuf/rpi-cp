@@ -21,7 +21,16 @@ module.exports = function (grunt) {
                 dirs: ['public']
             }
         },
-        uglify: {},
+        uglify: {
+            components: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/components',
+                    src: '**/*.js',
+                    dest: 'public/components'
+                }]
+            }
+        },
         rev: {
             dist: {
                 files: {
