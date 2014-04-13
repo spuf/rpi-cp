@@ -31,6 +31,7 @@ io.enable('browser client minification');
 io.enable('browser client etag');
 io.enable('browser client gzip');
 io.set('log level', 1);
+io.set('transports', config.transports);
 
 async.forever(function (callback) {
     if (io.sockets.clients().length > 0) {
@@ -66,7 +67,7 @@ io.sockets.on('connection', function (socket) {
     });
 });
 
-server.listen(config.port);
+server.listen(config.port, config.listen);
 console.log('Started server at port ' + config.port);
 if (config.ssl_enabled) {
     secureServer.listen(config.ssl_port);
