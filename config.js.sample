@@ -3,6 +3,9 @@ var os = require('os');
 var util = require('util');
 
 var config = {
+    listen: '0.0.0.0',
+    transports: ['websocket', 'xhr-polling', 'jsonp-polling', 'htmlfile'],
+
     port: 80,
 
     ssl_enabled: true,
