@@ -68,8 +68,8 @@ io.sockets.on('connection', function (socket) {
 });
 
 server.listen(config.port, config.listen);
-console.log('Started server at port ' + config.port);
+console.log('Started server at  [' + config.listen + ']:' + config.port);
 if (config.ssl_enabled) {
-    secureServer.listen(config.ssl_port);
-    console.log('Started secure server at port ' + config.ssl_port);
+    secureServer.listen(config.ssl_port, config.listen);
+    console.log('Started secure server at [' + config.listen + ']:' + config.ssl_port);
 }
